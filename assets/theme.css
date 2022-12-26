@@ -9165,3 +9165,7 @@ hr {
   max-height: 100vh;
   padding: 1em;
 }
+
+.jdgm-histogram__bar-content {
+  background-color: red !important;
+}
