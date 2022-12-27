@@ -287,8 +287,39 @@
         >
         </div>
 
-        <div class="product-single__description rte">
-          {{ product.description }}
+        <div class="rte">
+
+          <div class="details-container">
+            <div class="selector">
+              <div class="tab tab-active">
+                {{ 'product_tab.title.description' | t }}
+              </div>
+              {% if product.metafields.description.details %}
+              <div class="tab">
+                {{ 'product_tab.title.details' | t }}
+              </div>
+              {% endif %}
+              
+              <div class="tab">
+                {{ 'product_tab.title.shipping' | t }}
+              </div>
+            </div>
+            <div class="content">
+              <div id="Description" class="content-body show-active">
+                {{ product.description }}
+              </div>
+
+              {% if product.metafields.description.details %}
+              <div id="Details" class="content-body">
+                {{product.metafields.description.details}}
+              </div>
+              {% endif %}
+              
+              <div id="Shipping" class="content-body">
+                <p>{{ 'product_tab.title.shipping_details' | t }}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {% if section.settings.show_share_buttons %}

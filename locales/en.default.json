@@ -423,5 +423,13 @@
       "add_to_apple_wallet": "Add to Apple Wallet",
       "qr_image_alt": "QR code — scan to redeem gift card"
     }
+  },
+  "product_tab": {
+    "title": {
+      "description": "Description",
+      "details": "Details",
+      "shipping": "Shipping",
+      "shipping_details": "Your order will be shipped the same, or next, business day. During sale events and holidays, there may be a slightly longer duration"
+    }
   }
 }

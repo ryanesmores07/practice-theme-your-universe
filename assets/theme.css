@@ -9169,3 +9169,55 @@ hr {
 .jdgm-histogram__bar-content {
   background-color: red !important;
 }
+
+/* table metafield details */
+
+.details-container {
+  width: 100%;
+  height: 50%;
+  min-height: 250px;
+  /* border: 1px solid grey; */
+  margin: 0 auto;
+}
+
+.details-container .selector {
+  display: flex;
+  border-bottom: 1px solid grey;
+  /* background-color: #f1f1f1; */
+}
+
+.details-container .tab {
+  padding: 10px;
+}
+
+.details-container .tab:hover {
+  cursor: pointer;
+  /* background-color: darkgrey; */
+}
+
+.details-container .content {
+  padding: 10px;
+}
+
+.details-container .content-body {
+  display: none;
+}
+
+.details-container .show-active {
+  display: block;
+  animation: fade 1s;
+}
+
+.details-container .tab-active {
+  background-color: darkgrey;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
