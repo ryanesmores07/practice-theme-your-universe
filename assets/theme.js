@@ -691,6 +691,9 @@ slate.Variants = (function () {
     );
     this.currentVariant = this._getVariantFromOptions();
 
+    this.details_us = document.getElementById("details-us");
+    this.details_eu = document.getElementById("details-eu");
+
     this.singleOptions.forEach(
       function (option) {
         option.addEventListener("change", this._onSelectChange.bind(this));
@@ -733,11 +736,16 @@ slate.Variants = (function () {
       var selectedValues = this._getCurrentOptions();
       var variants = this.product.variants;
 
+      console.log(selectedValues, "selected values");
+      console.log(variants, "variants");
+
       var found = variants.find(function (variant) {
         return selectedValues.every(function (values) {
           return variant[values.index] === values.value;
         });
       });
+
+      console.log(found, "found");
 
       return found;
     },
@@ -762,6 +770,9 @@ slate.Variants = (function () {
         return;
       }
 
+      // console.log(variant);
+
+      this._updateDetails(variant);
       this._updateMasterSelect(variant);
       this._updateImages(variant);
       this._updatePrice(variant);
@@ -880,6 +891,62 @@ slate.Variants = (function () {
 
       if (!masterSelect) return;
       masterSelect.value = variant.id;
+    },
+
+    //     _updateDetails: function (variant) {
+    //       var details = document.getElementById("Details");
+    //       if (variant.option2 == "EU") {
+    //         details.innerHTML = `<table>
+    //   <tr>
+    //     <td>Package Dimensions</td>
+    //     <td>15.3 cm x 15.3 cm x 12.1 cm</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Voltage</td>
+    //     <td>230 V</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Frequency</td>
+    //     <td>50 Hz</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Wattage</td>
+    //     <td>5 w</td>
+    //   </tr>
+    // </table>`;
+    //       }
+    //       if (variant.option2 == "US") {
+    //         details.innerHTML = `<table>
+    //   <tr>
+    //     <td>Package Dimensions</td>
+    //     <td>6.06 x 6.02 x 4.75 inches</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Voltage</td>
+    //     <td>120 V</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Frequency</td>
+    //     <td>60 Hz</td>
+    //   </tr>
+    //   <tr>
+    //     <td>Wattage</td>
+    //     <td>5 w</td>
+    //   </tr>
+    // </table>`;
+    //       }
+    //     },
+    _updateDetails: function (variant) {
+      if (this.details_us && this.details_eu) {
+        if (variant.option2 == "US") {
+          this.details_us.classList.remove("hide");
+          this.details_eu.classList.add("hide");
+        }
+        if (variant.option2 == "EU") {
+          this.details_eu.classList.remove("hide");
+          this.details_us.classList.add("hide");
+        }
+      }
     },
   });
 
@@ -8087,6 +8154,8 @@ theme.Product = (function () {
         originalSelectorId: this.selectors.originalSelectorId,
         product: this.productSingleObject,
       };
+
+      console.log(options.product, "product data");
 
       this.variants = new slate.Variants(options);
       if (this.storeAvailability && this.variants.currentVariant.available) {

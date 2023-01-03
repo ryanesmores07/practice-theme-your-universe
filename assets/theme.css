@@ -9221,3 +9221,7 @@ hr {
     opacity: 1;
   }
 }
+
+.hide-table {
+  display: none;
+}
